@@ -1,0 +1,33 @@
+/* Structure */
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+.container{
+  display: flex;
+}
+.filters{
+  flex: 1;
+  margin: 10px;
+}
+.transaction-list{
+  flex: 3;
+  margin: 10px;
+}
+.account-name-filter,
+.transaction-type-filter{
+  margin: 10px;
+  background: #e7e7e7;
+}
+.filtersection{
+  display: flex;
+  flex-direction: column;
+  text-transform: capitalize;
+}
+.capitalize{
+  text-transform: capitalize;
+}

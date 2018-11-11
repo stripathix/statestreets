@@ -1,0 +1,78 @@
+<mat-progress-bar *ngIf="loadingData" mode="indeterminate"></mat-progress-bar>
+<div *ngIf="!loadingData" >
+<h3>My Transactions</h3>
+<hr/>
+<div class="container">
+   <div class="filters">
+      <h2 >Filters</h2>
+      <mat-card class="account-name-filter">
+         <mat-card-content>
+            <h5>Account Name</h5>
+            <section class="filtersection">
+               <mat-checkbox
+                *ngFor="let item of filtersSource.accountNames"
+               class="example-margin"
+               [(ngModel)]="item.checked"
+               [(indeterminate)]="indeterminate"
+               (change)="filterChecked($event)"
+               color="primary"
+               [labelPosition]="labelPosition">
+               {{item.name}}
+               </mat-checkbox>
+            </section>
+         </mat-card-content>
+      </mat-card>
+      <mat-card class="transaction-type-filter">
+         <mat-card-content>
+            <h5 >Transaction Type</h5>
+            <section class="filtersection">
+               <mat-checkbox
+               *ngFor="let item of filtersSource.transactionType"
+               class="example-margin"
+               [(ngModel)]="item.checked"
+               color="primary"
+               [(indeterminate)]="indeterminate"
+               (change)="filterChecked($event)"
+               [labelPosition]="labelPosition">
+               {{item.name}}
+               </mat-checkbox>
+            </section>
+         </mat-card-content>
+      </mat-card>
+   </div>
+   <div class="transaction-list">
+      <mat-form-field>
+         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Deep search">
+      </mat-form-field>
+      <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
+         <!-- Position Column -->
+         <ng-container matColumnDef="account">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> ACCOUNT NO. </th>
+            <td mat-cell *matCellDef="let element"> <a (click)="viewTransactionDetails(element)"> {{element.account}} </a></td>
+         </ng-container>
+         <!-- Name Column -->
+         <ng-container matColumnDef="accountName">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> ACCOUNT NAME </th>
+            <td mat-cell *matCellDef="let element"> {{element.accountName}} </td>
+         </ng-container>
+         <!-- Weight Column -->
+         <ng-container matColumnDef="currencyCode">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> CURRENCY </th>
+            <td mat-cell *matCellDef="let element"> {{element.currencyCode}} </td>
+         </ng-container>
+         <!-- Symbol Column -->
+         <ng-container matColumnDef="amount">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> AMOUNT </th>
+            <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+         </ng-container>
+         <ng-container matColumnDef="transactionType">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> TRANSACTION TYPE </th>
+            <td class="capitalize" mat-cell *matCellDef="let element"> {{element.transactionType}} </td>
+         </ng-container>
+         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+  <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+   </div>
+</div>
+</div>

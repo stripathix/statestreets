@@ -1,0 +1,16 @@
+<div *ngIf="transactionDetails">
+<h3>Transaction {{transactionDetails.account}}</h3>
+<hr/>
+<mat-card>
+  <mat-list>
+ <mat-list-item> <b>Account No:</b> {{transactionDetails.account}} </mat-list-item>
+ <mat-list-item> <b>Account Name:</b>  {{transactionDetails.accountName}} </mat-list-item>
+ <mat-list-item> <b>Account Currency Code:</b>  {{transactionDetails.currencyCode}} </mat-list-item>
+ <mat-list-item> <b>Account Amount:</b>  {{transactionDetails.amount}} </mat-list-item>
+ <mat-list-item> <b>Account Transaction Type:</b>  {{transactionDetails.transactionType}} </mat-list-item>
+ <mat-list-item> <b>Account Currency Name:</b>  {{transactionDetails.currencyName}} </mat-list-item>
+</mat-list>
+</mat-card>
+</div>
+<br/>
+<button color="primary" mat-raised-button mat-button routerLink="/"><i class="fas fa-chevron-left"></i> Back</button>
